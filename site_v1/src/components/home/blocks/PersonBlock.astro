@@ -1,0 +1,40 @@
+---
+const y1 = new Date(389181600 * 1000).getFullYear();
+const y2 = new Date().getFullYear();
+const age = y2 - y1;
+---
+
+<div class="bg-orange-200 rounded sm:w-1/3 min-w-[224px] flex flex-col items-center px-2 py-3">
+    <div class="rounded-full overflow-hidden w-36 border-2 border-black">
+        <img src="67558157.jpeg" alt="" />
+    </div>
+    <div class="flex flex-row gap-1 w-full justify-center text-3xl sm:text-xl font-bold">
+        <div>Christian</div>
+        <div>Fröchtenicht</div>
+    </div>
+    <div class="flex flex-row gap-1 w-full justify-between max-w-[308px]">
+        <div class="uppercase">Age:</div>
+        <div>{age}</div>
+    </div>
+    <div class="flex flex-row gap-1 w-full justify-between max-w-[308px]">
+        <div class="uppercase">City:</div>
+        <div>Peine, DE</div>
+    </div>
+    <div class="flex flex-row gap-1 w-full justify-between max-w-[308px]">
+        <div class="uppercase">Lang:</div>
+        <div>DE, EN</div>
+    </div>
+    <div class="flex flex-row gap-1 w-full justify-between items-center max-w-[308px]">
+        <div class="uppercase flex flex-row items-center">
+            <a
+                class="link"
+                target="_blank"
+                title="LinkedIn is a social network focused on professional connections and career development. It allows users to create a professional profile  build networks  find job opportunities  share content  and follow industry news. It's commonly used for networking  recruitment  and industry insights."
+                href="https://www.linkedin.com/in/christian-fr%C3%B6chtenicht-3584222b7/">Linkedin</a
+            ><img src="linkedin.svg" alt="" />
+        </div>
+        <div class="uppercase">
+            <a class="link" target="_blank" title="For a direct message to me  please email me." href="mailto:christian.froechtenicht@gmx.de">📧 Email</a>
+        </div>
+    </div>
+</div>

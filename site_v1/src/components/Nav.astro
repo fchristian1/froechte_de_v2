@@ -1,0 +1,17 @@
+---
+const { pathname } = Astro.url;
+const active = (path: string) => {
+    const currentPath = pathname.replace(/\/$/, "");
+    const targetPath = path.replace(/\/$/, "");
+    return currentPath === targetPath ? "active" : "";
+};
+---
+
+<nav class="maincontainer p-0">
+    <ul class="flex w-full gap-2">
+        <li><a class={active("")} href="/">Home</a></li>
+        <li><a class={active("/portfolio")} href="/portfolio">Portfolio</a></li>
+        <li><a class={active("/certprep")} href="/certprep">CertPrep</a></li>
+        <li class="w-full text-right"><a class={active("/login")} href="/login">Login</a></li>
+    </ul>
+</nav>

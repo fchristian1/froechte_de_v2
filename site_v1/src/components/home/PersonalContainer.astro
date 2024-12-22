@@ -1,0 +1,20 @@
+---
+import PersonBlock from "./blocks/PersonBlock.astro";
+import HeaderMainBlock from "./blocks/HeaderMainBlock.astro";
+import HeaderNowBlock from "./blocks/HeaderNowBlock.astro";
+import MainBlock from "./blocks/MainBlock.astro";
+import FooterBlock from "./blocks/FooterBlock.astro";
+---
+
+<div class="flex flex-col gap-1 m-2 text-sm">
+    <div class="flex flex-col sm:flex-row justify-center gap-1">
+        <PersonBlock />
+        <div class="w-full flex flex-col gap-1">
+            <HeaderMainBlock />
+            <HeaderNowBlock />
+            <MainBlock />
+        </div>
+    </div>
+
+    <FooterBlock />
+</div>
