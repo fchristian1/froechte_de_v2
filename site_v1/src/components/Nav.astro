@@ -1,9 +1,12 @@
 ---
+import { custom } from "astro:schema";
+
 const { pathname } = Astro.url;
 const active = (path: string) => {
     const currentPath = pathname.replace(/\/$/, "");
     const targetPath = path.replace(/\/$/, "");
-    return currentPath === targetPath ? "active" : "";
+    console.log("currentPath", currentPath, "targetPath", targetPath, 3, currentPath.includes(targetPath));
+    return currentPath.includes(targetPath) ? (targetPath != "" ? "active" : currentPath === targetPath ? "active" : "") : "";
 };
 ---
 

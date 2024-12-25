@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Todo from "./todo";
 
 function TodoList({ todos, setTodos, selectedTodo, setSelectedTodo }) {
     const [newTodo, setNewTodo] = useState({ id: crypto.randomUUID(), title: "", done: false, date: Date.now().toString() });
@@ -28,30 +29,7 @@ function TodoList({ todos, setTodos, selectedTodo, setSelectedTodo }) {
             <div>
                 <ul className="pt-1 flex flex-col gap-1">
                     {todos.map((todo, index) => (
-                        <li
-                            onClick={() => {
-                                selectedTodo ? setSelectedTodo(null) : setSelectedTodo(todo);
-                            }}
-                            key={todo.id}
-                            className={
-                                " cursor-pointer border border-gray-500 rounded p-1 " + (selectedTodo && selectedTodo.id === todo.id ? " bg-gray-400 " : " ")
-                            }
-                        >
-                            <input
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                }}
-                                onChange={(e) => {
-                                    const newTodos = [...todos];
-                                    newTodos[index].done = e.target.checked;
-                                    setTodos(newTodos);
-                                }}
-                                checked={todo.done}
-                                className="me-1"
-                                type="checkbox"
-                            />
-                            <span className="">{todo.title}</span>
-                        </li>
+                        <Todo todo={todo} selectedTodo={selectedTodo} setSelectedTodo={setSelectedTodo} todos={todos} setTodos={setTodos} index={index}></Todo>
                     ))}
                 </ul>
             </div>
