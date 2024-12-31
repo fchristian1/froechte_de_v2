@@ -1,0 +1,15 @@
+---
+import Layout from "../../../../../layouts/Layout.astro";
+import Todos from "../app/todos";
+---
+
+<Layout title="Portfolio > Websites > Apps > Todo">
+    <div class="p-2">
+        <a class="link text-sm" href="/portfolio/">back to Portfolio</a>
+        <Todos
+            modus="apilogin"
+            client:only="react"
+            info={"This is a simple ToDo list in React, nested in the Astro main page system. Data is stored in an API, accessed by login."}
+        />
+    </div>
+</Layout>
