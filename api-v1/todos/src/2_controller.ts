@@ -10,15 +10,15 @@ export class TodosController {
         res.json(await this.data.getAll());
     };
     getTodo = async (req: Request, res: Response) => {
-        res.json(this.data.getOneById(req.params.id));
+        res.json(await this.data.getOneById(req.params.id));
     };
     addTodo = async (req: Request, res: Response) => {
-        res.json(this.data.create(req.body));
+        res.json(await this.data.create(req.body));
     };
     updateTodo = async (req: Request, res: Response) => {
-        res.json(this.data.update(req.params.id, req.body));
+        res.json(await this.data.update(req.params.id, req.body));
     };
     deleteTodo = async (req: Request, res: Response) => {
-        res.json(this.data.delete(req.params.id));
+        res.json(await this.data.delete(req.params.id));
     };
 }
