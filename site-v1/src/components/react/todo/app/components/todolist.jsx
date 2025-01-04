@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useState } from "react";
 import Todo from "./todo";
 
 function TodoList({ todos, setTodos, selectedTodo, setSelectedTodo, dataService }) {

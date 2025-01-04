@@ -7,17 +7,13 @@ const Todos = ({ info, modus }) => {
     const [showInfo, setShowInfo] = useState(false);
     const [todos, setTodos] = useState([]);
     const [selectedTodo, setSelectedTodo] = useState(null);
-    const [dataService, setDataService] = useState(null);
+    const [dataService, _] = useState(new DataService(modus));
     async function getData() {
+        console.log("getData");
         if (dataService == null) return;
         const data = await dataService.getAll();
         setTodos(data);
     }
-    getData();
-    useEffect(() => {
-        setDataService(new DataService(modus));
-        getData();
-    }, [modus]);
     useEffect(() => {
         getData();
     }, []);

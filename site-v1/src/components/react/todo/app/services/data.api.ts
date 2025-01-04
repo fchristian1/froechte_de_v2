@@ -1,5 +1,5 @@
 import type { IDataService, Todo } from "./data";
-const API_URL = "http://localhost:4321/api/v1/todoapp/1/todos";
+const API_URL = "http://localhost:3000/api/v1/todoapp/1/todos";
 
 export class apiDataService implements IDataService {
     async getOneById(id: string): Promise<Todo | {}> {
@@ -7,6 +7,7 @@ export class apiDataService implements IDataService {
         return await response.json();
     }
     async getAll(): Promise<Todo[]> {
+        console.log("API_URL", API_URL);
         const response = await fetch(API_URL);
         return await response.json();
     }

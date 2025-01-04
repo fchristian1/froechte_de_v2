@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 function Todo({ todo, selectedTodo, setSelectedTodo, todos, setTodos, index, dataService }) {
+    useEffect(() => {
+        if (selectedTodo && selectedTodo.id == todo.id) {
+            setTodos((prev) => {
+                return prev.map((t) => {
+                    if (t.id == todo.id) {
+                        return { ...t, title: selectedTodo.title, description: selectedTodo.description, done: selectedTodo.done };
+                    }
+                    return t;
+                });
+            });
+        }
+    }, [selectedTodo]);
     return (
         <li
             key={todo.id}

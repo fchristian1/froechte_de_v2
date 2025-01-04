@@ -1,4 +1,4 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
 import { TodosController } from "./2_controller";
 
 const rodoRouter = (controller: TodosController) => {

@@ -1,20 +1,60 @@
 import { ITodoData, Todo, Todos } from "./1_data";
+import { Database } from "sqlite3";
 
 export class TodosDataSqlite implements ITodoData {
-    todos: Todos = [];
-    getAll(): Todos {
-        throw new Error("Method not implemented.");
+    db = new Database("./data/todos.db");
+    constructor() {
+        console.log("Using SQLite data provider");
     }
-    getOneById(id: string): Todo | {} {
-        throw new Error("Method not implemented.");
+    async getAll(): Promise<Todos> {
+        return new Promise((resolve, reject) => {
+            this.db.all<Todo>("SELECT * FROM todos", (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
     }
-    create(todo: Todo): Todo | {} {
-        throw new Error("Method not implemented.");
+    async getOneById(id: string): Promise<Todo | {}> {
+        return new Promise((resolve, reject) => {
+            this.db.get<Todo>("SELECT * FROM todos WHERE id = ?", [id], (err, row) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(row);
+            });
+        });
     }
-    update(id: string, todo: Todo): Todo | {} {
-        throw new Error("Method not implemented.");
+    async create(todo: Todo): Promise<Todo | {}> {
+        return new Promise((resolve, reject) => {
+            this.db.run("INSERT INTO todos (id, title, description, done) VALUES (?, ?, ?, ?)", [todo.id, todo.title, todo.description, todo.done], (err) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(todo);
+            });
+        });
     }
-    delete(id: string): Todo | {} {
-        throw new Error("Method not implemented.");
+    async update(id: string, todo: Todo): Promise<Todo | {}> {
+        return new Promise((resolve, reject) => {
+            this.db.run("UPDATE todos SET title = ?, description = ?, done = ? WHERE id = ?", [todo.title, todo.description, todo.done, id], (err) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(todo);
+            });
+        });
+    }
+    async delete(id: string): Promise<Todo | {}> {
+        return new Promise((resolve, reject) => {
+            this.db.run("DELETE FROM todos WHERE id = ?", [id], (err) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve({});
+            });
+        });
     }
 }

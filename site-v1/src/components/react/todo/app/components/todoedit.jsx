@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-function TodoEdit({ selectedTodo, setSelectedTodo, dataService }) {
+function TodoEdit({ selectedTodo, setSelectedTodo }) {
     const [saved, setSaved] = React.useState(false);
     useEffect(() => {
         if (saved == true) {

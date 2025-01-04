@@ -4,29 +4,30 @@ export class TodosData implements ITodoData {
         this.dataProvider = dataProvider;
     }
 
-    getAll(): Todos {
+    async getAll(): Promise<Todos> {
         return this.dataProvider.getAll();
     }
-    getOneById(id: string): Todo | {} {
+    async getOneById(id: string): Promise<Todo | {}> {
         return this.dataProvider.getOneById(id);
     }
-    create(todo: Todo): Todo | {} {
+    async create(todo: Todo): Promise<Todo | {}> {
+        todo.id = crypto.randomUUID();
         return this.dataProvider.create(todo);
     }
-    update(id: string, todo: Todo): Todo | {} {
+    async update(id: string, todo: Todo): Promise<Todo | {}> {
         return this.dataProvider.update(id, todo);
     }
-    delete(id: string): Todo | {} {
+    async delete(id: string): Promise<Todo | {}> {
         return this.dataProvider.delete(id);
     }
 }
 
 export interface ITodoData {
-    getAll(): Todos;
-    getOneById(id: string): Todo | {};
-    create(todo: Todo): Todo | {};
-    update(id: string, todo: Todo): Todo | {};
-    delete(id: string): Todo | {};
+    getAll(): Promise<Todos>;
+    getOneById(id: string): Promise<Todo | {}>;
+    create(todo: Todo): Promise<Todo | {}>;
+    update(id: string, todo: Todo): Promise<Todo | {}>;
+    delete(id: string): Promise<Todo | {}>;
 }
 
 export type Todos = Todo[];
