@@ -2,38 +2,51 @@ import type { IDataService, Todo } from "./data";
 const API_URL = "http://localhost:3000/api/v1/todoapp/1/todos";
 
 export class apiDataService implements IDataService {
+    token: string = "";
+    constructor() {
+        const token = this.getTokenFromLocalStorrage();
+        this.token = token;
+    }
+    getTokenFromLocalStorrage(): string {
+        return localStorage.getItem("tokensimple") ?? "";
+    }
+    setTokenFromLocalStorrage(): void {
+        this.token = this.getTokenFromLocalStorrage() ?? "";
+    }
+    async fetchApi(url: string, method: string, body?: string): Promise<Response> {
+        this.setTokenFromLocalStorrage();
+        console.log("token:", this.token);
+        return await fetch(url, {
+            method: method,
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${this.token}`,
+            },
+            body: body,
+        });
+    }
     async getOneById(id: string): Promise<Todo | {}> {
-        const response = await fetch(`${API_URL}/${id}`);
+        this.setTokenFromLocalStorrage();
+        const response = await this.fetchApi(`${API_URL}/${id}`, "GET");
         return await response.json();
     }
     async getAll(): Promise<Todo[]> {
-        console.log("API_URL", API_URL);
-        const response = await fetch(API_URL);
+        this.setTokenFromLocalStorrage();
+        const response = await this.fetchApi(API_URL, "GET");
         return await response.json();
     }
     async create(todo: Todo): Promise<Todo | {}> {
-        const response = await fetch(API_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(todo),
-        });
+        this.setTokenFromLocalStorrage();
+        const response = await this.fetchApi(API_URL, "POST", JSON.stringify(todo));
         return await response.json();
     }
     async update(todo: Todo): Promise<Todo | {}> {
-        const response = await fetch(`${API_URL}/${todo.id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(todo),
-        });
+        this.setTokenFromLocalStorrage();
+        const response = await this.fetchApi(`${API_URL}/${todo.id}`, "PUT", JSON.stringify(todo));
         return await response.json();
     }
     async delete(id: string): Promise<void | {}> {
-        await fetch(`${API_URL}/${id}`, {
-            method: "DELETE",
-        });
+        this.setTokenFromLocalStorrage();
+        await this.fetchApi(`${API_URL}/${id}`, "DELETE");
     }
 }

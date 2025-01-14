@@ -14,11 +14,20 @@ import Layout from "../../layouts/Layout.astro";
                     Apps
                     <ul class="ps-4">
                         Todo
-                        <ul class="ps-4">
-                            <li class="list-outside"><a class="link" href="/portfolio/apps/todos/local">Local</a></li>
-                            <li class="list-outside"><a class="link" href="/portfolio/apps/todos/api">API</a></li>
-                            <li class="list-outside"><a class="link" href="/portfolio/apps/todos/apilogin">API with login</a></li>
-                        </ul>
+                        <table class="border-separate border-spacing-1">
+                            <tr class="border-gray-400 border-b-2">
+                                <td class="align-top"><a class="link" href="/portfolio/apps/todos/local">Local</a></td>
+                                <td> Here is the data saved localy in the browser storage</td>
+                            </tr>
+                            <tr class="border-gray-400 border-b-2">
+                                <td class="align-top"><a class="link" href="/portfolio/apps/todos/api">API</a></td>
+                                <td>Here hold the data in an api with token access</td>
+                            </tr>
+                            <tr>
+                                <td class="align-top"><a class="link" href="/portfolio/apps/todos/apilogin">API with login</a></td>
+                                <td> Here hold the data in an api with login credentials to access</td>
+                            </tr>
+                        </table>
                     </ul>
                 </li>
             </ul>

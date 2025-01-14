@@ -1,7 +1,8 @@
 import { Router } from "express";
 import { TodosController } from "./2_controller";
+import { login } from "./common";
 
-const rodoRouter = (controller: TodosController) => {
+export const todoRouter = (controller: TodosController) => {
     const router = Router();
 
     router.get("/", controller.getTodos);
@@ -13,4 +14,12 @@ const rodoRouter = (controller: TodosController) => {
     return router;
 };
 
-export default rodoRouter;
+export const authRouter = () => {
+    const router = Router();
+
+    router.post("/login", (req, res) => {
+        const username = req.body.username;
+        const password = req.body.password;
+        const token = login(username, password);
+    });
+};

@@ -19,7 +19,10 @@ function TodoList({ todos, setTodos, selectedTodo, setSelectedTodo, dataService 
                 <button
                     onClick={async () => {
                         if (newTodo.title === "") return;
-                        setTodos([...todos, newTodo]);
+                        newTodo.id = crypto.randomUUID();
+                        console.log(newTodo);
+                        todos.push(newTodo);
+                        setTodos(todos);
                         dataService.create(newTodo);
                         setNewTodo({ title: "", description: "", done: false, id: "" });
                     }}

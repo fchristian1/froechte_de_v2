@@ -4,36 +4,37 @@ export class TodosData implements ITodoData {
         this.dataProvider = dataProvider;
     }
 
-    async getAll(): Promise<Todos> {
-        return this.dataProvider.getAll();
+    async getAll(userid: string): Promise<Todos> {
+        return this.dataProvider.getAll(userid);
     }
-    async getOneById(id: string): Promise<Todo | {}> {
-        return this.dataProvider.getOneById(id);
+    async getOneById(userid: string, id: string): Promise<Todo | {}> {
+        return this.dataProvider.getOneById(userid, id);
     }
-    async create(todo: Todo): Promise<Todo | {}> {
-        todo.id = crypto.randomUUID();
-        return this.dataProvider.create(todo);
+    async create(userid: string, todo: Todo): Promise<Todo | {}> {
+        todo.id == "" ? (todo.id = crypto.randomUUID()) : null;
+        return this.dataProvider.create(userid, todo);
     }
-    async update(id: string, todo: Todo): Promise<Todo | {}> {
-        return this.dataProvider.update(id, todo);
+    async update(userid: string, id: string, todo: Todo): Promise<Todo | {}> {
+        return this.dataProvider.update(userid, id, todo);
     }
-    async delete(id: string): Promise<Todo | {}> {
-        return this.dataProvider.delete(id);
+    async delete(userid: string, id: string): Promise<Todo | {}> {
+        return this.dataProvider.delete(userid, id);
     }
 }
 
 export interface ITodoData {
-    getAll(): Promise<Todos>;
-    getOneById(id: string): Promise<Todo | {}>;
-    create(todo: Todo): Promise<Todo | {}>;
-    update(id: string, todo: Todo): Promise<Todo | {}>;
-    delete(id: string): Promise<Todo | {}>;
+    getAll(userid: string): Promise<Todos>;
+    getOneById(userid: string, id: string): Promise<Todo | {}>;
+    create(userid: string, todo: Todo): Promise<Todo | {}>;
+    update(userid: string, id: string, todo: Todo): Promise<Todo | {}>;
+    delete(userid: string, id: string): Promise<Todo | {}>;
 }
 
 export type Todos = Todo[];
 
 export type Todo = {
     id: string;
+    userid: string;
     title: string;
     description: string;
     done: boolean;

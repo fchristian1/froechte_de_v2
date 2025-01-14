@@ -22,7 +22,7 @@ export class DataService implements IDataService {
         return this.dataServiceFromMode.getOneById(id);
     }
     getAll(): Promise<Todo[]> {
-        return this.dataServiceFromMode.getAll();
+        return this.dataServiceFromMode.getAll() ?? [];
     }
     create(todo: Todo): Promise<Todo | {}> {
         return this.dataServiceFromMode.create(todo);

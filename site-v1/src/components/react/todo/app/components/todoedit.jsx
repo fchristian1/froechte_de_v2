@@ -1,4 +1,4 @@
-function TodoEdit({ selectedTodo, setSelectedTodo, save, setSave }) {
+function TodoEdit({ selectedTodo, setSelectedTodo, save, setSave, deleteTodo, setDeleteTodo }) {
     return (
         <div className="w-1/2 border border-gray-500 rounded p-1 flex gap-1 flex-col">
             <div>
@@ -27,6 +27,18 @@ function TodoEdit({ selectedTodo, setSelectedTodo, save, setSave }) {
                     id="description"
                     placeholder="description"
                 ></textarea>
+            </div>
+            <div>
+                <button
+                    className="btn btn-red"
+                    onClick={() => {
+                        setDeleteTodo(selectedTodo);
+                    }}
+                >
+                    Delete
+                </button>
+            </div>
+            <div>
                 <div className="flex flex-row gap-1">
                     <input
                         className="w-[24px] h-[24px]"

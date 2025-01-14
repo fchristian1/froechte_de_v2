@@ -1,0 +1,23 @@
+{
+  "users": [
+    {
+      "id": "a7a98669-ce51-4e89-9e4c-400bf2227985",
+      "username": "admin",
+      "passwordHash": "7f29e24fd1fd7c6ee090aaa73c7ae1ef14c0ddcee2754c1b3c17a7a82155f73f",
+      "dateUnixString": "1736858525583"
+    },
+    {
+      "id": "fc374196-8458-4023-bdf0-84a9531cd033",
+      "username": "user",
+      "passwordHash": "ad2d2dd0d874e6f6361b2f157c54f8d600676f0a598530657732d210c02a11cb",
+      "dateUnixString": "1736858525585"
+    }
+  ],
+  "logins": [
+    {
+      "id": "63bca702-5881-4144-a795-eebf26430ebe",
+      "userId": "a7a98669-ce51-4e89-9e4c-400bf2227985",
+      "token": "ee19357a72a24561b1e0a02586d22b61"
+    }
+  ]
+}
